@@ -1,22 +1,26 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
-// import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const context = {
-  title: 'Page two'
-}
-
-const SecondPage = () => (
+const SecondPage = ({ pageContext }) => (
   <>
-    <SEO title={context.title} />
+    <SEO title={pageContext.title} />
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
     <Link to="/">Go back to the homepage</Link>
   </>
 )
 
-SecondPage.context = context;
+export const query = graphql`
+query {
+  sitePageContext(path: {eq: "/page-2/"}) {
+    path
+    context(title: "Page two") {
+      title
+    }
+  }
+}
+`
 
 export default SecondPage

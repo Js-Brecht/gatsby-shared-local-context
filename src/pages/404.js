@@ -1,11 +1,7 @@
 import React from "react"
+import { graphql } from 'gatsby';
 
-// import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-const context = {
-  title: '404'
-}
 
 const NotFoundPage = () => (
   <>
@@ -15,6 +11,15 @@ const NotFoundPage = () => (
   </>
 )
 
-NotFoundPage.context = context;
+export const query = graphql`
+query {
+  sitePageContext(path: {eq: "/404/"}) {
+    path
+    context(title: "404") {
+      title
+    }
+  }
+}
+`
 
 export default NotFoundPage
