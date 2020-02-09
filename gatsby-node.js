@@ -45,7 +45,6 @@ exports.onCreateNode = ({ actions, createNodeId, node, createContentDigest }) =>
             context: {
                 // If any values are placed here for any of the page nodes,
                 // it will override the values passed in by the @pagecontext directive
-                abcd: 1234
             },
             path: node.path,
         }
