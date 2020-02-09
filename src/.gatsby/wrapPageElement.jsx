@@ -19,13 +19,13 @@ const getPageContext = (props) => {
 		};
 		delete props.data.sitePageContext;
 	}
+	// The props object must be MUTATED here, because if the object reference is changed
+	// it will not be passed on to the component as `pageContext`
+	Object.assign(props.pageContext, pageContext);
 	return pageContext;
 }
 
 export default ({ element, props }) => {
-	// The props object MUST be MUTATED here, because if the object reference is changed
-	// it will not be passed on to the component as `pageContext`
-	Object.assign(props.pageContext, getPageContext(props));
-	const layoutProps = props.pageContext || props;
+	const layoutProps = getPageContext(props);
 	return <Layout {...layoutProps}>{element}</Layout>
 }
